@@ -1,1 +1,10 @@
 <router-outlet></router-outlet> 
+<google-map height="1200px"
+            width="1750px"
+            [center]="center"
+            [zoom]="zoom"
+            (mapClick)="addMarker($event)">
+  <map-marker *ngFor="let markerPosition of markerPositions"
+              [position]="markerPosition"
+              [options]="markerOptions"></map-marker>
+</google-map>

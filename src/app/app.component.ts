@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'barber-shop';
+  title = 'My first AGM project';
+  center: google.maps.LatLngLiteral = {lat: 24, lng: 12};
+  zoom = 4;
+  markerOptions: google.maps.MarkerOptions = {draggable: false};
+  markerPositions: google.maps.LatLngLiteral[] = [];
+
+  addMarker(event: google.maps.MapMouseEvent) {
+    this.markerPositions.push(event.latLng.toJSON());
+  }
 }
