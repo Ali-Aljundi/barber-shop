@@ -1,10 +1,12 @@
 <router-outlet></router-outlet> 
-<google-map height="1200px"
-            width="1750px"
+<google-map height="60vh"
+            width="60vw"
             [center]="center"
             [zoom]="zoom"
             (mapClick)="addMarker($event)">
-  <map-marker *ngFor="let markerPosition of markerPositions"
-              [position]="markerPosition"
+  <map-marker #marker="mapMarker" *ngFor="let markerPosition of markerPositions"
+              [position]="markerPosition.postion" (mapClick)="openInfoWindow(marker,markerPosition)"
+              [title]='markerPosition.title'
               [options]="markerOptions"></map-marker>
+              <map-info-window>{{selectedShop?.title}}</map-info-window>
 </google-map>
