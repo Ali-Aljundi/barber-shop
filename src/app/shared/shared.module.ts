@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppNgZorroAntdModule } from '../app-ng-zorro-antd.module';
 import { IconsProviderModule } from '../icons-provider.module';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 
@@ -11,10 +12,12 @@ import { IconsProviderModule } from '../icons-provider.module';
   imports: [
     AppNgZorroAntdModule,
     IconsProviderModule,
-    CommonModule
+    CommonModule,
+    GoogleMapsModule
   ],
   exports: [
     AppNgZorroAntdModule,
-    IconsProviderModule,]
+    IconsProviderModule,
+    GoogleMapsModule]
 })
 export class SharedModule { }
