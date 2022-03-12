@@ -21,6 +21,8 @@
         "@angular/router": "~11.2.9",
         "@ant-design/icons": "^4.7.0",
         "@ant-design/icons-angular": "^11.0.1",
+        "animate.css": "^4.1.1",
+        "aos": "^2.3.4",
         "bootstrap": "^4.0.0",
         "ng-zorro-antd": "^11.4.2",
         "rxjs": "~6.6.0",

@@ -56,7 +56,7 @@ header .navbar {
     }
 }
 
-header .navbar .nav-link {
+.nav-link {
     padding: 1.7rem 1rem;
     outline: none !important;
 }
@@ -67,18 +67,35 @@ header .navbar .nav-link {
     }
 }
 
-header .navbar .nav-link:hover {
+.nav-link {
     color: #fff !important;
 }
 
-header .navbar .nav-link.active {
+.nav-link:hover {
     color: #fff !important;
 }
 
-header .navbar.navbar-light .nav-link {
+.nav-link.active {
+    color: #fff !important;
+}
+
+.navbar-light .nav-link {
     color: #fff;
 }
 
 header .navbar.navbar-light .nav-link.active {
+    color: #fff;
+}
+
+.section-cover,
+.section-cover .intro {
+    height: 500px;
+}
+
+.section-cover p {
+    color: #fff;
+}
+
+.section-cover h2 {
     color: #fff;
 }
