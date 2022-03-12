@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ControlPanelRoutingModule } from './control-panel-routing.module';
 import { ControlPanelComponent } from './control-panel.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { ControlPanelComponent } from './control-panel.component';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     ControlPanelRoutingModule
   ]
 })

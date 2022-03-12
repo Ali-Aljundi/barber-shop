@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainComponent } from './shared/components/main/main.component';
 import { IconsProviderModule } from './icons-provider.module';
+import { AppNgZorroAntdModule } from './app-ng-zorro-antd.module';
 
 registerLocaleData(en);
 
@@ -29,7 +30,7 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
     IconsProviderModule,
-
+    AppNgZorroAntdModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

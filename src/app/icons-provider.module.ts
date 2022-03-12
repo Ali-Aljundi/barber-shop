@@ -9,9 +9,9 @@ import {
 } from '@ant-design/icons-angular/icons';
 
 const icons = [MenuFoldOutline, MenuUnfoldOutline, DashboardOutline, FormOutline];
-
+ 
 @NgModule({
-  imports: [NzIconModule.forRoot(icons)],
+  imports: [NzIconModule],
   exports: [NzIconModule],
   providers: [
     { provide: NZ_ICONS, useValue: icons }
