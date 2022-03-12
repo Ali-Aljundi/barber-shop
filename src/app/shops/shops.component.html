@@ -1,11 +1,79 @@
-<google-map height="60vh"
-            width="60vw"
-            [center]="center"
-            [zoom]="zoom"
-            (mapClick)="addMarker($event)">
-  <map-marker #marker="mapMarker" *ngFor="let markerPosition of markerPositions"
-              [position]="markerPosition.postion" (mapClick)="openInfoWindow(marker,markerPosition)"
-              [title]='markerPosition.title'
-              [options]="markerOptions"></map-marker>
-              <map-info-window>{{selectedShop?.title}}</map-info-window>
-</google-map>
+<div class="row">
+    <div class="col-xl-2">
+        <form [nzLayout]='"vertical"' nz-form>
+            <nz-form-item>
+                <nz-form-label>Shop Name</nz-form-label>
+                <nz-form-control>
+                    <nz-input-group [nzSuffix]="suffixIconSearch">
+                        <input type="text" nz-input placeholder="Search On Shop Name" />
+                    </nz-input-group>
+                    <ng-template #suffixIconSearch>
+                        <i nz-icon nzType="search"></i>
+                    </ng-template>
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-label>Location</nz-form-label>
+                <nz-form-control>
+                    <nz-select class="w-100" ngModel="lucy" [ngModelOptions]="{standalone: true}">
+                        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                        <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+                        <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+
+
+            <nz-form-item>
+                <nz-form-label>Service</nz-form-label>
+                <nz-form-control>
+                    <nz-select class="w-100" ngModel="lucy" [ngModelOptions]="{standalone: true}">
+                        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                        <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+                        <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-label>Rate</nz-form-label>
+                <nz-form-control>
+                    <div class="d-flex justify-content-center">
+                        <nz-rate [ngModel]="3" [ngModelOptions]="{standalone: true}"></nz-rate>
+                    </div>
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-label>Service Cost</nz-form-label>
+                <nz-form-control>
+                    <nz-row>
+                        <nz-col nzSpan="14">
+                            <nz-slider [nzMarks]="marks" [nzMin]="1" [nzMax]="1000" [(ngModel)]="price"
+                                [ngModelOptions]="{standalone: true}"></nz-slider>
+                        </nz-col>
+                        <div nz-col nzSpan="1">
+                            <nz-input-group nzAddOnAfterIcon="dollar">
+                            <nz-input-number [nzMin]="1" [nzMax]="1000" [ngStyle]="{ marginLeft: '16px' }"
+                                [(ngModel)]="price" [ngModelOptions]="{standalone: true}"></nz-input-number>
+                                </nz-input-group>
+                        </div>
+                    </nz-row>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control >
+                  <button class="w-100" nz-button nzType="primary">Search</button>
+                </nz-form-control>
+              </nz-form-item>
+        </form>
+    </div>
+    <div class="col-xl-10">
+        <google-map height="85vh" width="80vw" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)">
+            <map-marker #marker="mapMarker" *ngFor="let markerPosition of markerPositions"
+                [position]="markerPosition.postion" (mapClick)="openInfoWindow(markerPosition)"
+                [title]='markerPosition.title' [options]="markerOptions"></map-marker>
+        </google-map>
+    </div>
+</div>

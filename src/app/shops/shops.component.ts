@@ -1,14 +1,22 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Injector, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { MapInfoWindow } from '@angular/google-maps';
+import { NzMarks } from 'ng-zorro-antd/slider';
+import { BaseComponent } from '../shared/components/base.component';
+import { BookingServiceComponent } from './booking-service/booking-service.component';
 
 @Component({
   selector: 'app-shops',
   templateUrl: './shops.component.html',
   styleUrls: ['./shops.component.scss']
 })
-export class ShopsComponent implements OnInit {
+export class ShopsComponent extends BaseComponent implements OnInit {
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow;
 
+  constructor(injector: Injector,    private viewContainerRef: ViewContainerRef,
+    ){
+    super(injector);
+
+  }
   ngOnInit(): void {
    }
 
@@ -20,6 +28,22 @@ export class ShopsComponent implements OnInit {
     { lat: 13, lng: -13 },
   ];
   selectedShop
+  price = 0
+  marks: NzMarks = {
+    1: {
+      style: {
+        color: '#00FF00 '
+      },
+      label: '<strong>1$</strong>'
+    },
+    1000: {
+      style: {
+        color: '#f50'
+      },
+      label: '<strong>1000$</strong>'
+    }
+  };
+  
   markerOptions: google.maps.MarkerOptions = { draggable: false, animation: google.maps.Animation.BOUNCE, icon: 'https://img.icons8.com/external-photo3ideastudio-flat-photo3ideastudio/32/000000/external-barber-public-service-photo3ideastudio-flat-photo3ideastudio.png' };
   markerPositions: google.maps.LatLngLiteral[] | any = [
     {
@@ -65,9 +89,13 @@ export class ShopsComponent implements OnInit {
       title: '6'
     }
   ];
-  openInfoWindow(marker, node) {
+  openInfoWindow(node) {
     this.selectedShop = node
-    this.infoWindow.open(marker);
+    this.utility.modal.create({
+      nzContent: BookingServiceComponent,
+      nzViewContainerRef: this.viewContainerRef,
+      nzWidth: '50%',
+    })
   }
   addMarker(event: google.maps.MapMouseEvent) {
     // this.markerPositions.push(event.latLng.toJSON());

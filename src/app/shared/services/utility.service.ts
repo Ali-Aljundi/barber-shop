@@ -1,9 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilityService {
+  public modal: NzModalService;
 
-  constructor() { }
+  constructor(injector: Injector) { 
+    this.modal = injector.get(NzModalService);
+  }
 }

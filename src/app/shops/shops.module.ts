@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { ShopsRoutingModule } from './shops-routing.module';
 import { ShopsComponent } from './shops.component';
 import { SharedModule } from '../shared/shared.module';
+import { BookingServiceComponent } from './booking-service/booking-service.component';
 
 
 @NgModule({
   declarations: [
-    ShopsComponent
+    ShopsComponent,
+    BookingServiceComponent
   ],
   imports: [
     CommonModule,
