@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
-import { faScissors } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-root',
@@ -10,12 +9,12 @@ import { faScissors } from "@fortawesome/free-solid-svg-icons";
 export class AppComponent {
   title = 'My first AGM project';
   center: google.maps.LatLngLiteral = { lat: 33.50467494035581, lng: 36.25054251275587 };
-  zoom = 15;
+  zoom = 14;
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow;
   vertices: google.maps.LatLngLiteral[] = [
     { lat: 13, lng: 13 },
     { lat: -13, lng: 0 },
-    { lat: 13, lng: -13 },
+    { lat: 13, lng: -13 }, 
   ];
 selectedShop
   markerOptions: google.maps.MarkerOptions = { draggable: false, animation: google.maps.Animation.BOUNCE, icon: 'https://img.icons8.com/external-photo3ideastudio-flat-photo3ideastudio/32/000000/external-barber-public-service-photo3ideastudio-flat-photo3ideastudio.png' };
@@ -69,21 +68,21 @@ selectedShop
   }
   addMarker(event: google.maps.MapMouseEvent) {
     // this.markerPositions.push(event.latLng.toJSON());
-    // console.log(this.markerPositions)
-    this.markerPositions = [    {
-      postion: {
-        "lat": 33.502849908333644,
-        "lng": 36.247667184691906
-      },
-      title: '5'
-    },
-    {
-      postion: {
-        "lat": 33.504191847389116,
-        "lng": 36.249179950576305
-      },
-      title: '6'
-    }]
+     console.log(event.latLng.toJSON())
+    // this.markerPositions = [    {
+    //   postion: {
+    //     "lat": 33.502849908333644,
+    //     "lng": 36.247667184691906
+    //   },
+    //   title: '5'
+    // },
+    // {
+    //   postion: {
+    //     "lat": 33.504191847389116,
+    //     "lng": 36.249179950576305
+    //   },
+    //   title: '6'
+    // }]
   }
 }
 
