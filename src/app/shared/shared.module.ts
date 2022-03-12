@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MainComponent } from './components/main/main.component';
+import { AppNgZorroAntdModule } from '../app-ng-zorro-antd.module';
+import { IconsProviderModule } from '../icons-provider.module';
 
 
 
 @NgModule({
   declarations: [
-    MainComponent
   ],
   imports: [
+    AppNgZorroAntdModule,
+    IconsProviderModule,
     CommonModule
-  ]
+  ],
+  exports: [
+    AppNgZorroAntdModule,
+    IconsProviderModule,]
 })
 export class SharedModule { }
