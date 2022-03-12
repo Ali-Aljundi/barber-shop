@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
+import { BaseComponent } from '../base.component';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent extends BaseComponent implements OnInit {
 
-  constructor() { }
+  constructor(injector: Injector,
+  ) {
+    super(injector);
+
+  }
 
   ngOnInit(): void {
   }
