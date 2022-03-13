@@ -12,15 +12,17 @@ import { BookingServiceComponent } from './booking-service/booking-service.compo
 export class ShopsComponent extends BaseComponent implements OnInit {
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow;
 
-  constructor(injector: Injector,    private viewContainerRef: ViewContainerRef,
+  constructor(injector: Injector,private viewContainerRef: ViewContainerRef,
     ){
     super(injector);
-
   }
   ngOnInit(): void {
+    let latCenter = Number(this.markerPositions.reduce((total, el)=>Number(total) + Number(el.postion.lat),0)/this.markerPositions.length)
+    let lngCenter = Number(this.markerPositions.reduce((total, el)=>Number(total) + Number(el.postion.lng),0)/this.markerPositions.length)
+    this.center = { lat: latCenter, lng: lngCenter }
    }
 
-  center: google.maps.LatLngLiteral = { lat: 33.50467494035581, lng: 36.25054251275587 };
+  center: google.maps.LatLngLiteral = { lat: 0, lng: 0 };
   zoom = 14;
   vertices: google.maps.LatLngLiteral[] = [
     { lat: 13, lng: 13 },
@@ -62,7 +64,7 @@ export class ShopsComponent extends BaseComponent implements OnInit {
     },
     {
       postion: {
-        "lat": 33.50609736509894,
+        "lat": 33.53809736509894,
         "lng": 36.25087510667372
       },
       title: '3'
@@ -77,7 +79,7 @@ export class ShopsComponent extends BaseComponent implements OnInit {
     {
       postion: {
         "lat": 33.502849908333644,
-        "lng": 36.247667184691906
+        "lng": 36.277667184691906
       },
       title: '5'
     },
@@ -89,30 +91,23 @@ export class ShopsComponent extends BaseComponent implements OnInit {
       title: '6'
     }
   ];
-  openInfoWindow(node) {
-    this.selectedShop = node
+  openInfoWindow(shop) {
+    this.selectedShop = shop
     this.utility.modal.create({
+      nzTitle: 'Book Service',
       nzContent: BookingServiceComponent,
       nzViewContainerRef: this.viewContainerRef,
-      nzWidth: '50%',
+      nzWidth: '40%',
+      nzBodyStyle: {
+        height: '75vh',
+        overflow:'auto'
+      },
+      nzComponentParams: {
+        shop: shop
+      },
     })
   }
   addMarker(event: google.maps.MapMouseEvent) {
-    // this.markerPositions.push(event.latLng.toJSON());
     console.log(event.latLng.toJSON())
-    // this.markerPositions = [    {
-    //   postion: {
-    //     "lat": 33.502849908333644,
-    //     "lng": 36.247667184691906
-    //   },
-    //   title: '5'
-    // },
-    // {
-    //   postion: {
-    //     "lat": 33.504191847389116,
-    //     "lng": 36.249179950576305
-    //   },
-    //   title: '6'
-    // }]
   }
 }

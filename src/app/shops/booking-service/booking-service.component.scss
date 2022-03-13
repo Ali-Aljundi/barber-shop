@@ -1,0 +1,17 @@
+.shop-image{
+    border-radius: 20px;
+    max-width: 10vw;
+}
+// .parent {
+//     display: flex;
+//     flex-direction: column;
+//   }
+//   .child {
+//     margin-top: auto;
+//   }
+:host ::ng-deep .selectedService{
+    border: groove !important;
+    background-color: #e6f7ff !important;
+    border-color: #91d5ff !important;
+  }
+  
