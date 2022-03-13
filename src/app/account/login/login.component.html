@@ -1,1 +1,31 @@
-<p>login works!</p>
+<div class="wrapper" style="background-image: url('assets/images/11.jpg');">
+    <div class="inner">
+        <form action="" class="row d-block " [formGroup]="loginForm">
+            <div class="col">
+                <h3 class="w-100">Registration Form</h3>
+            </div>
+            <div class="col mt-5">
+                <nz-form-item class="d-block mx-1">
+                    <nz-form-label nzRequired>User Name</nz-form-label>
+                    <nz-form-control nzValidatingTip="Validating... ">
+                        <input nz-input formControlName="username" placeholder="User Name" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+
+            <div class="col">
+                <nz-form-item class="d-block mx-1">
+                    <nz-form-label nzRequired>Password</nz-form-label>
+                    <nz-form-control nzValidatingTip="Validating... ">
+                        <input nz-input formControlName="password" placeholder="Password" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+
+            <div class="col text-center">
+                <button nz-button nzType="text" nzType="primary" (click)="submitform(loginForm.value)">Register</button>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -14,10 +14,6 @@ const routes: Routes = [
         loadChildren: () => import('./home-page/home-page.module').then(m => m.HomePageModule),
       },
       {
-        path: 'account',
-        loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
-      },
-      {
         path: 'reservation',
         loadChildren: () => import('./reservation/reservation.module').then(m => m.ReservationModule),
       },
@@ -34,7 +30,11 @@ const routes: Routes = [
   {
       path: 'control-panel',
       loadChildren: () => import('./control-panel/control-panel.module').then(m => m.ControlPanelModule),
-  }
+  },
+  {
+    path: 'account',
+    loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
+  },
 ];
 
 @NgModule({
