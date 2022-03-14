@@ -13,9 +13,15 @@
                 </nz-form-item>
             </div>
         </div>
-        <h3 class="text-white mt-5">Services:</h3>
 
-        <div class="row d-flex justify-content-start align-items-center mb-5">
+        <div class="row d-flex justify-content-between align-items-end">
+            <h3 class="text-white mt-5 col">Services:</h3>
+            <span class="col text-right mx-3">
+                <button nz-button nzType="text" nzType="defualt" >Add Service</button>
+            </span>
+        </div>
+
+        <div class="row d-flex justify-content-start align-items-center mb-5 mt-3">
             <div *ngFor="let ser of servicList" class="col-lg-3 col-md-4 col-sm-6 p-3">
                 <nz-card [nzLoading]="ser.loading" class="action-card" [nzBodyStyle]="{padding: '24px 12px'}" nzHoverable [nzActions]="[dmActions, dmStatus]">
                     <nz-card-meta [nzTitle]="ser.name" [nzDescription]="descriptionTemplate"></nz-card-meta>

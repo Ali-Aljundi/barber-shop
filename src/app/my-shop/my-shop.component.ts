@@ -11,7 +11,12 @@ export class MyShopComponent extends BaseComponent implements OnInit {
   servicList = [
     {name: 'Hair Cat'},
     {name: 'Hair Cat'},
-    {name: 'Hair Cat'}
+    {name: 'Hair Cat'},
+    {name: 'Hair Cat'},
+    {name: 'Hair Cat'},
+    {name: 'Hair Cat'},
+    {name: 'Hair Cat'},
+    {name: 'Hair Cat'},
   ];
   constructor(
     injector: Injector
