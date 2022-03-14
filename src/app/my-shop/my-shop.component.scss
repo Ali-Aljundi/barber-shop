@@ -6,7 +6,7 @@
     overflow: hidden;
     color: #555 !important;
     text-align: center;
-  //  min-height:25vh !important;
+    //  min-height:25vh !important;
     border-radius: 4px;
     cursor: pointer;
     transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
@@ -24,4 +24,10 @@
     display: block;
     white-space: nowrap;
     text-align: center;
+}
+
+:host ::ng-deep .ant-form-item-label>label {
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
 }
