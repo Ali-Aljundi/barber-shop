@@ -5,6 +5,7 @@ import { ShopsRoutingModule } from './shops-routing.module';
 import { ShopsComponent } from './shops.component';
 import { SharedModule } from '../shared/shared.module';
 import { BookingServiceComponent } from './booking-service/booking-service.component';
+import { AppNgZorroAntdModule } from '../app-ng-zorro-antd.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { BookingServiceComponent } from './booking-service/booking-service.compo
   imports: [
     CommonModule,
     SharedModule,
-    ShopsRoutingModule
+    ShopsRoutingModule,
+    AppNgZorroAntdModule
   ]
 })
 export class ShopsModule { }

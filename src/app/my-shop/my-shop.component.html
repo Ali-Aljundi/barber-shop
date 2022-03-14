@@ -1,1 +1,36 @@
- 
+
+<div class="row justify-content-center section-cover mx-0 px-0" style="height: 500px; background: linear-gradient(rgba(29, 36, 52, 1), rgba(29, 36, 52, .5), rgba(29, 36, 52, 1)), url(assets/images/22.jpg);background-size: cover; background-repeat: no-repeat;">
+    <div class="col-md-7 text-center my-5 d-flex flex-column justify-content-center align-items-center">
+        <h2 class=" my-5 discount ">Barber Shop Services</h2>
+    </div>
+</div>
+
+
+<div class="row mx-0 my-5">
+    <div class="col-md-4">
+        map
+    </div>
+    <div class="col-md-8">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div *ngFor="let ser of servicList" class="col-lg-3 col-md-4 col-sm-6 p-3">
+                <nz-card [nzLoading]="ser.loading" class="action-card" [nzBodyStyle]="{padding: '24px 12px'}"
+                    nzHoverable [nzActions]="[dmActions, dmStatus]">
+                    <nz-card-meta [nzTitle]="ser.name" [nzDescription]="descriptionTemplate"></nz-card-meta>
+                </nz-card>
+
+                <ng-template #descriptionTemplate>
+                    <p>dfdf</p>
+                </ng-template>
+
+                <ng-template #dmActions>
+                    <i class="d-inline mx-2" nz-icon nzType="edit" (click)="showSerModal(ser)"></i>
+                </ng-template>
+
+
+                <ng-template #dmStatus>
+                    <i class="d-inline mx-2" nz-icon nzDanger nzType="delete" (click)="showDeleteConfirm(ser.id)"></i>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

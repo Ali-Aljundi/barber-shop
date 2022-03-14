@@ -16,7 +16,7 @@ const routes: Routes = [{
   imports: [
     RouterModule.forChild(routes),
     SharedModule,
-    CommonModule
+    CommonModule,
   ]
 })
 export class HomePageModule { }

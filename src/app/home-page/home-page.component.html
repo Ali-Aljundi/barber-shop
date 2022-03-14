@@ -77,13 +77,78 @@
     </div>
 </section>
 
-<div class="row justify-content-center mt-5 section-cover mx-0 px-0" style="background-image: url(assets/images/big_image_2.jpg);">
+<!-- <div class="row justify-content-center mt-5 section-cover mx-0 px-0" style="background-image: url(assets/images/big_image_2.jpg);">
     <div class="col-md-7 text-center">
         <h2 class="mt-5">Feed Back</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum magnam illum maiores adipisci pariatur, eveniet.
         </p>
+        <div class="row">
+            <swiper [config]="config" [parallax]="true"
+                [loop]="true" [autoplay]="true">
+                <ng-template swiperSlide style="background: white;" *ngFor="let
+                    feedback of activeFeedbacks">
+                    <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+                        <div class="swiper-wrapper">
+
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <p>
+                                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                                        {{feedback?.descriptions}}
+                                        <i class="fa fa-quote-left"></i>
+                                    </p>
+                                    <img src="{{feedback?.image}}" class="testimonial-img" alt="">
+                                    <h3>{{feedback?.name}}</h3>
+                                    <h4>{{feedback?.position}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </swiper>
+        </div>
     </div>
-</div>
+</div> -->
+
+
+<!-- <section id="testimonials" class="parallex" style="margin-top: 0px;" style="background-image: url(assets/images/big_image_2.jpg);">
+    <div class="sp-container">
+        <div class="quote"> <i class="fa fa-quote-left text-white mt-5" style="font-size: 50px;"></i> </div>
+        <div class="clearfix"></div>
+        <div class="slider-text">
+            <div id="owl-testi" class="owl-carousel owl-theme" style="opacity:
+                0;">
+            </div>
+        </div>
+        <div class="row">
+            <h2 class="text-white mt-2">What they're saying about us</h2>
+            <swiper [config]="config"  [parallax]="true"
+                [loop]="true" [autoplay]="true">
+                <ng-template swiperSlide style="background: white;" *ngFor="let
+                    feedback of activeFeedbacks">
+                    <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+                        <div class="swiper-wrapper">
+
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <p>
+                                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                                        {{feedback?.descriptions}}
+                                        <i class="fa fa-quote-left"></i>
+                                    </p>
+                                    <img src="{{feedback?.image}}" class="testimonial-img" alt="">
+                                    <h3>{{feedback?.name}}</h3>
+                                    <h4>{{feedback?.position}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </swiper>
+        </div>
+    </div>
+</section> -->
+
 
 <section class="site-section" style="background-image: url(assets/images/about-shape.png); background-size: cover;">
     <div class="container">

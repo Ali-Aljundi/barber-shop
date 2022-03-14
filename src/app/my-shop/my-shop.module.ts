@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { MyShopRoutingModule } from './my-shop-routing.module';
 import { MyShopComponent } from './my-shop.component';
+import { AppNgZorroAntdModule } from '../app-ng-zorro-antd.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +13,10 @@ import { MyShopComponent } from './my-shop.component';
   ],
   imports: [
     CommonModule,
-    MyShopRoutingModule
+    MyShopRoutingModule,
+    AppNgZorroAntdModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class MyShopModule { }
