@@ -6,6 +6,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../shared/shared.module';
+import { AppNgZorroAntdModule } from '../app-ng-zorro-antd.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +19,10 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     SharedModule,
-    AccountRoutingModule
+     AccountRoutingModule,
+    AppNgZorroAntdModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AccountModule { }

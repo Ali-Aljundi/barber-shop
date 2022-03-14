@@ -1,0 +1,38 @@
+.wrapper {
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+}
+
+.inner {
+    padding: 20px;
+    background: #fff;
+    max-width: 850px;
+    margin: auto;
+    display: flex;
+    width: 400px;
+    display: flex;
+    border-radius: 6px;
+    position: absolute;
+    left: 100px;
+    top: 250px;
+    .image-holder {
+        width: 50%;
+    }
+}
+
+form {
+    width: 100%;
+    padding-top: 36px;
+    padding-left: 45px;
+    padding-right: 45px;
+}
+
+:host ::ng-deep .ant-btn-primary {
+    background: #010101 !important;
+    border-color: #0b101b !important;
+}
