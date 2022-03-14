@@ -1,1 +1,86 @@
-<p>reservation works!</p>
+<nz-calendar>
+  <ul *nzDateCell="let date" class="events">
+    <ng-container *ngIf="haveReservation(date).length>0">
+      <div *ngIf="haveReservation(date).length == 1" style="width: fit-content;">
+        <div>
+          <nz-avatar class="mx-3" [nzSize]="'small'" nzIcon="user" [nzSrc]="serviceIcon(haveReservation(date)[0])">
+          </nz-avatar>
+          <span>{{haveReservation(date)[0].shopName}}</span>
+          <span class="px-2"><strong>{{haveReservation(date)[0].date | date:'hh:MM a'}}</strong></span>
+        </div>
+        <span nz-typography nzType="secondary">{{haveReservation(date)[0].serviceName}}</span>
+        <div class="row">
+          <div class="col-4 p-1">
+            <h5 class="mb-0" nz-typography nzType="success">{{haveReservation(date)[0].cost}}$</h5>
+          </div>
+          <div class="col-5  p-1">
+            <h5 class="mb-0" nz-typography nzType="warning">{{haveReservation(date)[0].duration}} min</h5>
+          </div>
+          <div class="col-2  p-1">
+            <i nz-popover [nzPopoverContent]="contentTemplate" nz-icon nzType="star" style="font-size: 20px;"
+              nzTheme="twotone" [nzTwotoneColor]="'#fadb14'"></i>
+          </div>
+          <div class="col-1  p-1 pl-2">
+            <i nz-popover [nzPopoverContent]="mapTemplate"  nz-icon nzType="environment"  style="font-size: 20px;"
+              nzTheme="twotone" [nzTwotoneColor]="'#eb2f96'"></i>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center" *ngIf="haveReservation(date).length > 1">
+        <button nz-button nzType="primary" (click)='showReservation=true;selectedReservationByDate=haveReservation(date)' nzShape="round">Show Reservation</button>
+      </div>
+    </ng-container>
+    <ng-template #contentTemplate>
+      <nz-rate [(ngModel)]="haveReservation(date)[0].rate"></nz-rate>
+    </ng-template>
+    <ng-template #mapTemplate>
+      <google-map [center]="haveReservation(date)[0].location" [zoom]="16">
+        <map-marker #marker="mapMarker" [position]="haveReservation(date)[0].location"></map-marker>
+      </google-map>
+    </ng-template>
+  </ul>
+</nz-calendar>
+<nz-modal [(nzVisible)]="showReservation" nzWidth='20%' [nzBodyStyle]="{'max-height': '70vh',overflow:'auto'}" (nzOnCancel)="showReservation = false;selectedReservationByDate=[]" nzTitle="Reservation On ({{selectedReservationByDate[0]?.date | date :'MM-dd'}})" >
+  <ng-container *nzModalFooter></ng-container>
+  <ng-container *nzModalContent>
+    <nz-list nzItemLayout="horizontal">
+      <nz-list-item *ngFor="let item of selectedReservationByDate">
+        <div style="width:100%">
+          <div class="d-flex justify-content-center">
+            <nz-avatar class="mx-3" [nzSize]="'small'" nzIcon="user" [nzSrc]="serviceIcon(item)">
+            </nz-avatar>
+            <span>{{item.shopName}}</span>
+            <span class="px-2"><strong>{{item.date | date:'hh:MM a'}}</strong></span>
+          </div>
+          <div class="d-flex justify-content-center">
+            <span nz-typography nzType="secondary">{{item.serviceName}}</span>
+            </div>
+          <div class="row">
+            <div class="col-4 p-1">
+              <h5 class="mb-0" nz-typography nzType="success">{{item.cost}}$</h5>
+            </div>
+            <div class="col-5  p-1">
+              <h5 class="mb-0" nz-typography nzType="warning">{{item.duration}} min</h5>
+            </div>
+            <div class="col-2  p-1">
+              <i nz-popover [nzPopoverContent]="contentTemplate" nz-icon nzType="star" style="font-size: 20px;"
+                nzTheme="twotone" [nzTwotoneColor]="'#fadb14'"></i>
+            </div>
+            <div class="col-1  p-1 pl-2">
+              <i nz-popover [nzPopoverContent]="mapTemplate"  nz-icon nzType="environment"  style="font-size: 20px;"
+                nzTheme="twotone" [nzTwotoneColor]="'#eb2f96'"></i>
+            </div>
+          </div>
+        </div>
+        <ng-template #contentTemplate>
+          <nz-rate [(ngModel)]="item.rate"></nz-rate>
+        </ng-template>
+        <ng-template #mapTemplate>
+          <google-map [center]="item.location" [zoom]="16">
+            <map-marker #marker="mapMarker" [position]="item.location"></map-marker>
+          </google-map>
+        </ng-template>
+      </nz-list-item>
+    </nz-list>
+  </ng-container>
+</nz-modal>

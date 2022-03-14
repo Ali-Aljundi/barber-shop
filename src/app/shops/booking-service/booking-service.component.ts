@@ -7,11 +7,12 @@ import { BaseComponent } from 'src/app/shared/components/base.component';
   styleUrls: ['./booking-service.component.scss']
 })
 export class BookingServiceComponent extends BaseComponent implements OnInit,AfterViewInit {
+  
+  @Input() shop
 
-  constructor(injector: Injector
-  ) {
-    super(injector);
-  }
+  constructor(injector: Injector) {super(injector);}
+  selectedService = []
+
   ngAfterViewInit(): void {
     this.resizeCards()
   }
@@ -28,8 +29,7 @@ export class BookingServiceComponent extends BaseComponent implements OnInit,Aft
       return this.selectedService.reduce((total, el)=>Number(total) + Number(el.duration),0).toFixed(2)
   }
 
-  @Input() shop
-  selectedService = []
+
   ngOnInit(): void {
   }
   
@@ -38,6 +38,7 @@ export class BookingServiceComponent extends BaseComponent implements OnInit,Aft
     textAlign: 'center',
     padding: '5px'
   };
+
   services = [
     {
       id: 1,
@@ -112,6 +113,7 @@ export class BookingServiceComponent extends BaseComponent implements OnInit,Aft
       service_type: 'wax'
     }
   ]
+
   resizeCards(){
     let cards:any=document.querySelectorAll("#settingCard")
     let cardsHeight= [...cards].map(res=>res?.getBoundingClientRect()?.height);
