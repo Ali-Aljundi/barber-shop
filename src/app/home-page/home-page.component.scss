@@ -235,6 +235,7 @@
 
 .discount {
     font-size: 50px;
+    color: black;
 }
 
 .line {
@@ -348,7 +349,7 @@ a.btn1:hover {
     box-sizing: content-box;
     min-height: 320px;
     display: flex;
-    align-items: start;
+    align-items: center;
     flex-direction: column;
     justify-content: center;
     margin-top: 20px;
@@ -367,12 +368,12 @@ a.btn1:hover {
     font-size: 18px;
     font-weight: bold;
     margin: 10px 0 5px 45px;
-    color: white;
+    color: black;
 }
 
 .testimonial-item h4 {
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
+    color: black;
     margin: 0 0 0 45px;
 }
 
@@ -399,13 +400,16 @@ a.btn1:hover {
     font-style: italic;
     margin: 0 25px 0 25px;
     padding: 20px 20px 60px 20px;
-    background: #f5f5f5;
+    background: #ffffff;
     position: relative;
     border-bottom-right-radius: 25px;
     border-top-left-radius: 25px;
     position: relative;
     z-index: 1;
     font-size: 18px;
+    color: black;
+    width: 400px;
+    height: 200px;
 }
 
 .swiper-pagination {
@@ -433,3 +437,19 @@ a.btn1:hover {
     color: gray;
     font-size: 25px;
 }
+
+[nz-carousel-content] {
+    text-align: center;
+    height: 300px;
+    max-height: 300px;
+    line-height: 160px;
+    background: none;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  h3 {
+    color: #fff;
+    margin-bottom: 0;
+    user-select: none;
+  }

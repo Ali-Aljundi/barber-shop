@@ -42,8 +42,7 @@
                 },
                 "./node_modules/aos/dist/aos.css" ],
                  "scripts": [ 
-                  "./node_modules/aos/dist/aos.js"
-                 ]
+                  "./node_modules/aos/dist/aos.js"                 ]
             },
             "configurations": {
               "production": {

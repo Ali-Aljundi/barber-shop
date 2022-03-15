@@ -2,7 +2,7 @@
     <div class="col-md-4">
         map
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8" style="background-image: url(assets/images/slider01.jpg);">
         <div class="row my-5">
             <div class="col-md-6">
                 <nz-form-item class="d-block mx-1">
@@ -16,13 +16,13 @@
 
         <div class="row d-flex justify-content-between align-items-end">
             <h3 class="text-white mt-5 col">Services:</h3>
-            <span class="col text-right mx-3">
-                <button nz-button nzType="text" nzType="defualt" >Add Service</button>
+            <span class="col text-right mx-1">
+                <button nz-button nzType="text" nzType="defualt" (click)="showSerModal()">Add Service</button>
             </span>
         </div>
 
         <div class="row d-flex justify-content-start align-items-center mb-5 mt-3">
-            <div *ngFor="let ser of servicList" class="col-lg-3 col-md-4 col-sm-6 p-3">
+            <div *ngFor="let ser of servicList" class="col-lg-4 col-md-4 col-sm-6 p-3">
                 <nz-card [nzLoading]="ser.loading" class="action-card" [nzBodyStyle]="{padding: '24px 12px'}" nzHoverable [nzActions]="[dmActions, dmStatus]">
                     <nz-card-meta [nzTitle]="ser.name" [nzDescription]="descriptionTemplate"></nz-card-meta>
                 </nz-card>
@@ -32,12 +32,19 @@
                 </ng-template>
 
                 <ng-template #dmActions>
-                    <i class="d-inline mx-2" nz-icon nzType="edit" (click)="showSerModal(ser)"></i>
+                    <a nz-button nzType="link" nzBlock style="color:#52c41a;" (click)="showSerModal(ser)" class="d-flex justify-content-center align-items-center">
+                        <i class="d-inline" nz-icon nzType="edit" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></i>
+                        Edit
+                    </a>
+                    <!-- <i class="d-inline mx-2" nz-icon nzType="edit" style="color:#52c41a;" (click)="showSerModal(ser)"></i> -->
                 </ng-template>
 
 
                 <ng-template #dmStatus>
-                    <i class="d-inline mx-2" nz-icon nzDanger nzType="delete" (click)="showDeleteConfirm(ser.id)"></i>
+                    <a nz-button nzType="link" nzBlock style="color:#f56036"(click)="showDeleteConfirm(ser.id)" class="d-flex justify-content-center align-items-center">
+                        <i class="d-inline" nz-icon nzType="delete" [nzTheme]="'twotone'" [nzTwotoneColor]="'#f56036'"></i>
+                        Delete
+                    </a>
                 </ng-template>
             </div>
         </div>

@@ -11,7 +11,9 @@
     cursor: pointer;
     transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
-    width: 250px;
+    // width: 250px;
+    width: 100%;
+
 }
 
 .action-card .action-icon {

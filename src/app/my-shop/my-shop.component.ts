@@ -1,5 +1,7 @@
-import { Component, Injector, OnInit } from '@angular/core';
+import { Component, Injector, OnInit, ViewContainerRef } from '@angular/core';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { BaseComponent } from '../shared/components/base.component';
+import { AddServiceComponent } from './add-service/add-service.component';
 
 @Component({
   selector: 'app-my-shop',
@@ -9,17 +11,18 @@ import { BaseComponent } from '../shared/components/base.component';
 export class MyShopComponent extends BaseComponent implements OnInit {
 
   servicList = [
-    {name: 'Hair Cat'},
-    {name: 'Hair Cat'},
-    {name: 'Hair Cat'},
-    {name: 'Hair Cat'},
-    {name: 'Hair Cat'},
-    {name: 'Hair Cat'},
-    {name: 'Hair Cat'},
-    {name: 'Hair Cat'},
+    {name: 'Haircut & Shave'},
+    {name: 'Cream & Shampoo'},
+    {name: 'Mustache Expert'},
+    {name: 'Haircomb'},
+    {name: 'Razor For Beards'},
+    {name: 'Haircut Styler'},
   ];
   constructor(
-    injector: Injector
+    injector: Injector,
+    public modal: NzModalService,
+    private viewContainerRef: ViewContainerRef,
+
   ) {
     super(injector);
    }
@@ -31,7 +34,7 @@ export class MyShopComponent extends BaseComponent implements OnInit {
   showDeleteConfirm(id){
     this.utility.modal.confirm({
       nzTitle: 'Delete Service',
-      nzContent: `<b style="color: red;">Are You Sure'</b>`,
+      nzContent: `<b style="color: red;">Are You Sure</b>`,
       nzOkText: 'Yes',
       nzOkType: 'primary',
       nzOkDanger: true,
@@ -43,7 +46,29 @@ export class MyShopComponent extends BaseComponent implements OnInit {
     });
   }
 
-  showSerModal(ser?){}
+  showSerModal(ser?){
+    const modal = this.modal.create({
+      nzTitle: ser ? 'Edit Service' : 'Add Service',
+      nzContent: AddServiceComponent,
+      nzViewContainerRef: this.viewContainerRef,
+      nzComponentParams : {
+        editService : ser
+      },
+      nzOnOk: () => new Promise(resolve => setTimeout(resolve, 1000)),
+    });
+
+    modal.afterClose.subscribe(result => {      
+      if (result) {
+        // if (material?.id) {
+        //   Object.assign(material, result);
+        // } else {
+        //   this.initLoading = true;
+        //   this.materialsList = [];
+        //   this.getMaterial();
+        // }
+      }
+    });
+  }
 
   deleteItem(id){}
 }
