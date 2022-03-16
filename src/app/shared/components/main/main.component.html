@@ -12,23 +12,32 @@
                     <li class="nav-item">
                         <a class="nav-link active" [routerLink]="['/']">Home</a>
                     </li>
-                    <li class="nav-item">
+                    <li *ngIf="isUser" class="nav-item">
                         <a class="nav-link" [routerLink]="['/shops']" >Shops</a>
                     </li>
-                    <li class="nav-item">
+                    <li *ngIf="isUser || isOwner" class="nav-item">
                         <a class="nav-link" [routerLink]="['/reservation']">Reservation</a>
                     </li>
-                    <li class="nav-item">
+                    <li *ngIf="isOwner" class="nav-item">
                         <a class="nav-link" [routerLink]="['/my-shop']">My Shop</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/account/register']">Join us</a>
+                    <li *ngIf="!(isUser || isOwner)" class="nav-item">
+                        <a class="nav-link"  [routerLink]="['/account/register','shop']">Join us</a>
                     </li>
-                    <li class="nav-item mx-5">
+                    <li *ngIf="isUser || isOwner" class="nav-item" (click)='logout()'>
+                        <a class="nav-link" [routerLink]="['/account/login']">Logout</a>
+                    </li>
+                    <li *ngIf="!(isUser || isOwner)" class="nav-item" >
+                        <a class="nav-link" [routerLink]="['/account/register','user']">Register</a>
+                    </li>
+                    <li *ngIf="!(isUser || isOwner)" class="nav-item" >
+                        <a class="nav-link" [routerLink]="['/account/login']">login</a>
+                    </li>
+                    <!-- <li *ngIf="!(isUser || isOwner)" class="nav-item mx-5">
                         <a class="nav-link" [routerLink]="['/account/login']">
                             <i nz-icon nzType="user" nzTheme="outline"></i>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
 
             </div>

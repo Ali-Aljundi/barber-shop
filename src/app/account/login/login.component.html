@@ -22,8 +22,10 @@
                 </nz-form-item>
             </div>
 
-            <div class="col text-center">
-                <button nz-button nzType="text" nzType="primary" (click)="submitform(loginForm.value)">Login</button>
+            <div class="col text-center">               
+                <button class='mx-2' nz-button nzType="text" [disabled]='loginForm.invalid' [nzLoading]='loading' nzType="primary" (click)="submitform(loginForm.value)">Login</button>
+
+                <button class='mx-2' nz-button nzType="text" nzType="dashed" [routerLink]="['/account/register/user']" >Register</button>
             </div>
 
         </form>

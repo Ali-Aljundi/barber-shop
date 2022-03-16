@@ -1,11 +1,11 @@
 <div class="row mx-0" style="background: black;">
     <div class="col-xl-2">
-        <form [nzLayout]='"vertical"' nz-form>
+        <form [nzLayout]='"vertical"' nz-form [formGroup]="shopFilterForm">
             <nz-form-item>
                 <nz-form-label>Shop Name</nz-form-label>
                 <nz-form-control>
                     <nz-input-group [nzSuffix]="suffixIconSearch">
-                        <input type="text" nz-input placeholder="Search On Shop Name" />
+                        <input type="text" nz-input formControlName="name" appEmptyToNull placeholder="Search On Shop Name" />
                     </nz-input-group>
                     <ng-template #suffixIconSearch>
                         <i nz-icon nzType="search"></i>
@@ -16,22 +16,14 @@
             <nz-form-item>
                 <nz-form-label>Location</nz-form-label>
                 <nz-form-control>
-                    <nz-select class="w-100" ngModel="lucy" [ngModelOptions]="{standalone: true}">
-                        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-                        <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
-                        <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
-                    </nz-select>
-                </nz-form-control>
-            </nz-form-item>
+                    <nz-select nzAllowClear  class="w-100" formControlName="city">
+                        <nz-option nzValue="Manchester" nzLabel="Manchester"></nz-option>
+                        <nz-option nzValue="Newcastle" nzLabel="Newcastle"></nz-option>
+                        <nz-option nzValue="London" nzLabel="London"></nz-option>
+                        <nz-option nzValue="Birmingham" nzLabel="Birmingham"></nz-option>
+                        <nz-option nzValue="Liverpool" nzLabel="Liverpool"></nz-option>
+                        <nz-option nzValue="Oxford" nzLabel="Oxford"></nz-option>
 
-
-            <nz-form-item>
-                <nz-form-label>Service</nz-form-label>
-                <nz-form-control>
-                    <nz-select class="w-100" ngModel="lucy" [ngModelOptions]="{standalone: true}">
-                        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-                        <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
-                        <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
                     </nz-select>
                 </nz-form-control>
             </nz-form-item>
@@ -40,40 +32,55 @@
                 <nz-form-label>Rate</nz-form-label>
                 <nz-form-control>
                     <div class="d-flex justify-content-center">
-                        <nz-rate [ngModel]="3" [ngModelOptions]="{standalone: true}"></nz-rate>
+                        <nz-rate  formControlName="rate" appEmptyToNull></nz-rate>
                     </div>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+            <form [nzLayout]='"vertical"' nz-form [formGroup]="servicesFilterForm">
+
+            <nz-form-item>
+                <nz-form-label>Service</nz-form-label>
+                <nz-form-control>
+                    <nz-select nzAllowClear  class="w-100" formControlName="service_name" appEmptyToNull>
+                        <nz-option nzCustomContent  nzValue="wax" nzLabel="Wax">
+                            <nz-avatar class="mx-3" [nzSize]="'small'" nzIcon="user" nzSrc="assets/icon/wax.png"></nz-avatar>Wax
+                        </nz-option>
+                        <nz-option nzCustomContent  nzValue="packages" nzLabel="Packages">
+                            <nz-avatar class="mx-3" [nzSize]="'small'" nzIcon="user" nzSrc="assets/icon/packages.png"></nz-avatar>Packages
+                        </nz-option>
+                        <nz-option nzCustomContent  nzValue="color" nzLabel="Color">
+                            <nz-avatar class="mx-3" [nzSize]="'small'" nzIcon="user" nzSrc="assets/icon/color.png"></nz-avatar>Color
+                        </nz-option>
+                        <nz-option nzCustomContent  nzValue="face" nzLabel="Face">
+                            <nz-avatar class="mx-3" [nzSize]="'small'" nzIcon="user" nzSrc="assets/icon/face.png"></nz-avatar>Face
+                        </nz-option>
+                        <nz-option nzCustomContent  nzValue="hair" nzLabel="Hair">
+                            <nz-avatar class="mx-3" [nzSize]="'small'" nzIcon="user" nzSrc="assets/icon/hair.png"></nz-avatar>Hair
+                        </nz-option>
+                    </nz-select>
                 </nz-form-control>
             </nz-form-item>
 
             <nz-form-item>
                 <nz-form-label>Service Cost</nz-form-label>
                 <nz-form-control>
-                    <nz-row>
-                        <nz-col nzSpan="14">
-                            <nz-slider [nzMarks]="marks" [nzMin]="1" [nzMax]="1000" [(ngModel)]="price"
-                                [ngModelOptions]="{standalone: true}"></nz-slider>
-                        </nz-col>
-                        <div nz-col nzSpan="1">
-                            <nz-input-group nzAddOnAfterIcon="dollar">
-                            <nz-input-number [nzMin]="1" [nzMax]="1000" [ngStyle]="{ marginLeft: '16px' }"
-                                [(ngModel)]="price" [ngModelOptions]="{standalone: true}"></nz-input-number>
-                                </nz-input-group>
-                        </div>
-                    </nz-row>
+                            <nz-slider [nzMarks]="marks" [nzMin]="1" [nzMax]="1000"  formControlName="cost" appEmptyToNull
+                                 ></nz-slider>
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-control >
-                  <button class="w-100" nz-button nzType="primary">Search</button>
+                  <button class="w-100" (click)='getShop()' nz-button nzType="primary">Search</button>
                 </nz-form-control>
               </nz-form-item>
         </form>
     </div>
     <div class="col-xl-10">
-        <google-map height="85vh" width="80vw" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)">
+        <google-map height="85vh" width="80vw" [center]="center" [zoom]="zoom">
             <map-marker #marker="mapMarker" *ngFor="let markerPosition of markerPositions"
-                [position]="markerPosition.postion" (mapClick)="openInfoWindow(markerPosition)"
-                [title]='markerPosition.title' [options]="markerOptions"></map-marker>
+                [position]='{ "lat": markerPosition.lat,"lng": markerPosition.lng}' (mapClick)="openInfoWindow(markerPosition)"
+                [title]='markerPosition.shopName' [options]="markerOptions"></map-marker>
         </google-map>
     </div>
 </div>

@@ -1,9 +1,11 @@
 import { Component, Injector, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MapInfoWindow } from '@angular/google-maps';
 import { NzMarks } from 'ng-zorro-antd/slider';
+import { ProxyService } from '../proxy/proxy.service';
 import { BaseComponent } from '../shared/components/base.component';
 import { BookingServiceComponent } from './booking-service/booking-service.component';
-
+import { debounceTime } from "rxjs/operators";
 @Component({
   selector: 'app-shops',
   templateUrl: './shops.component.html',
@@ -12,23 +14,15 @@ import { BookingServiceComponent } from './booking-service/booking-service.compo
 export class ShopsComponent extends BaseComponent implements OnInit {
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow;
 
-  constructor(injector: Injector,private viewContainerRef: ViewContainerRef,
-    ){
+  constructor(injector: Injector, private viewContainerRef: ViewContainerRef, private formBuilder: FormBuilder, private proxyService: ProxyService) {
     super(injector);
   }
-  ngOnInit(): void {
-    let latCenter = Number(this.markerPositions.reduce((total, el)=>Number(total) + Number(el.postion.lat),0)/this.markerPositions.length)
-    let lngCenter = Number(this.markerPositions.reduce((total, el)=>Number(total) + Number(el.postion.lng),0)/this.markerPositions.length)
-    this.center = { lat: latCenter, lng: lngCenter }
-   }
-
+  shopFilterForm: FormGroup;
+  servicesFilterForm: FormGroup;
+  markerOptions: google.maps.MarkerOptions = { draggable: false, animation: google.maps.Animation.BOUNCE, icon: 'https://img.icons8.com/external-photo3ideastudio-flat-photo3ideastudio/32/000000/external-barber-public-service-photo3ideastudio-flat-photo3ideastudio.png' };
+  markerPositions: any = [];
   center: google.maps.LatLngLiteral = { lat: 0, lng: 0 };
   zoom = 14;
-  vertices: google.maps.LatLngLiteral[] = [
-    { lat: 13, lng: 13 },
-    { lat: -13, lng: 0 },
-    { lat: 13, lng: -13 },
-  ];
   selectedShop
   price = 0
   marks: NzMarks = {
@@ -45,52 +39,54 @@ export class ShopsComponent extends BaseComponent implements OnInit {
       label: '<strong>1000$</strong>'
     }
   };
-  
-  markerOptions: google.maps.MarkerOptions = { draggable: false, animation: google.maps.Animation.BOUNCE, icon: 'https://img.icons8.com/external-photo3ideastudio-flat-photo3ideastudio/32/000000/external-barber-public-service-photo3ideastudio-flat-photo3ideastudio.png' };
-  markerPositions: google.maps.LatLngLiteral[] | any = [
-    {
-      postion: {
-        "lat": 33.50467494035581,
-        "lng": 36.25054251275587,
-      },
-      title: '1'
-    },
-    {
-      postion: {
-        "lat": 33.50553376563862,
-        "lng": 36.24955545983839
-      },
-      title: '2'
-    },
-    {
-      postion: {
-        "lat": 33.53809736509894,
-        "lng": 36.25087510667372
-      },
-      title: '3'
-    },
-    {
-      postion: {
-        "lat": 33.505918445032975,
-        "lng": 36.24754916749525
-      },
-      title: '4'
-    },
-    {
-      postion: {
-        "lat": 33.502849908333644,
-        "lng": 36.277667184691906
-      },
-      title: '5'
-    },
-    {
-      postion: {
-        "lat": 33.504191847389116,
-        "lng": 36.249179950576305
-      },
-      title: '6'
+  ngOnInit(): void {
+    this.shopFilterForm = this.formBuilder.group({
+      name: [null],
+      city: [null],
+      rate: [5],
+    });
+    this.servicesFilterForm = this.formBuilder.group({
+      service_name: [null],
+      cost: [1000],
+    });
+    this.getAllShop()
+    this.shopFilterForm.valueChanges.pipe(debounceTime(400)).subscribe(el => {
+      this.getShop()
+    })
+    this.servicesFilterForm.valueChanges.pipe(debounceTime(400)).subscribe(el => {
+      this.getShop()
+    })
+    this.initMap()
+  }
+
+  getAllShop() {
+    this.proxyService.getAllShop().subscribe(el => {
+      this.markerPositions = el[0]
+      this.initMap()
+    })
+  }
+
+  getShop() {
+    let input = {
+      "shopFilterRequest": this.shopFilterForm.value,
+      "servicesFilterRequest": this.servicesFilterForm.value
     }
-  ];
+    this.proxyService.getAllShopByFilter(input).subscribe(el => {
+      this.markerPositions = el[0]
+      this.initMap()
+    })
+  }
+
+  get haveLocation() {
+    return this.markerPositions?.filter(el => el.lat)
+  }
+
+  initMap() {
+    let latCenter = Number(this.markerPositions?.reduce((total, el) => Number(total) + Number(el.lat), 0) / this.haveLocation?.length)
+    let lngCenter = Number(this.markerPositions?.reduce((total, el) => Number(total) + Number(el.lng), 0) / this.haveLocation?.length)
+    this.center = { lat: latCenter, lng: lngCenter }
+  }
+
   openInfoWindow(shop) {
     this.selectedShop = shop
     this.utility.modal.create({
@@ -99,15 +95,13 @@ export class ShopsComponent extends BaseComponent implements OnInit {
       nzViewContainerRef: this.viewContainerRef,
       nzWidth: '40%',
       nzBodyStyle: {
-        height: '75vh',
-        overflow:'auto'
+        'max-height': '75vh',
+        overflow: 'auto'
       },
       nzComponentParams: {
         shop: shop
       },
     })
   }
-  addMarker(event: google.maps.MapMouseEvent) {
-    console.log(event.latLng.toJSON())
-  }
+
 }

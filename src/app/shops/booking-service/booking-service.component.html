@@ -1,12 +1,13 @@
+
 <div class="d-flex justify-content-center">
     <nz-avatar class="mx-3" [nzSize]="120" nzIcon="user" nzSrc="assets/images/barber_shop.jpg"></nz-avatar>
     <div class="d-flex flex-column align-items-center justify-content-center">
-        <h2>shop name</h2>
-        <nz-rate [ngModel]="3" nzDisabled></nz-rate>
+        <h2>{{shop.shopName}}</h2>
+        <nz-rate [ngModel]="shop.rate" nzDisabled></nz-rate>
     </div>
 </div>
 <nz-card class="my-4" nzTitle="Services">
-    <div #settingCard id="settingCard" *ngFor="let service of services" nz-card-grid [ngStyle]="gridStyle"
+    <div #settingCard id="settingCard" *ngFor="let service of shop?.shopServicesList" nz-card-grid [ngStyle]="gridStyle"
         [ngClass]='isSelectedService(service)?"selectedService":null' (click)="selectService(service)">
         <div>
             <nz-avatar class="mx-3" [nzSize]="'default'" nzIcon="user" [nzSrc]="serviceIcon(service)"></nz-avatar>
@@ -30,11 +31,11 @@
         <h5 nz-typography>Reservation Date : </h5>
     </div>
     <div class="col-8 text-center">
-        <nz-date-picker class="w-100" nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss" ngModel></nz-date-picker>
+        <nz-date-picker class="w-100" nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss" [(ngModel)]='selectedDate' (ngModelChange)="onDateChange($event)"></nz-date-picker>
     </div>
 </div>
-<nz-divider></nz-divider>
-<div class="row">
+<!--<nz-divider></nz-divider>
+ <div class="row">
     <div class="col-6 text-center">
         <nz-card  [nzBodyStyle]="{padding: '8px 4px'}">
             <h4 nz-typography nzType="success">Total Cost :{{totalCost}}$</h4>
@@ -45,8 +46,8 @@
             <h4 nz-typography nzType="warning">Total Duration : {{totalDuration}} min</h4>
         </nz-card>
     </div>
-</div>
+</div> -->
 <div *nzModalFooter>
     <button nz-button nzDanger nzType="primary">Cancel</button>
-    <button nz-button nzType="primary">Book</button>
+    <button nz-button [disabled]='bookForm?.invalid' (click)='bookService(bookForm.value)' [nzLoading]='loading' nzType="primary">Book</button>
 </div>

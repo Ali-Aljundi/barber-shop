@@ -14,6 +14,11 @@ export class MainComponent extends BaseComponent implements OnInit {
 
   }
 
+  logout(){
+    localStorage.removeItem('token')
+    this.utility.route.navigate(['/account/login']);
+  }
+
   ngOnInit(): void {
   }
 

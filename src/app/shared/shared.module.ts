@@ -3,24 +3,29 @@ import { CommonModule } from '@angular/common';
 import { AppNgZorroAntdModule } from '../app-ng-zorro-antd.module';
 import { IconsProviderModule } from '../icons-provider.module';
 import { GoogleMapsModule } from '@angular/google-maps';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EmptyToNullDirective } from './services/empty-to-null.directive';
 
 
 
 @NgModule({
   declarations: [
+    EmptyToNullDirective
   ],
   imports: [
     AppNgZorroAntdModule,
     IconsProviderModule,
     CommonModule,
     GoogleMapsModule,
-    FormsModule 
+    FormsModule,
+    ReactiveFormsModule 
   ],
   exports: [
     AppNgZorroAntdModule,
     IconsProviderModule,
     FormsModule,
-    GoogleMapsModule]
+    GoogleMapsModule,
+    EmptyToNullDirective,
+    ReactiveFormsModule]
 })
 export class SharedModule { }
