@@ -60,19 +60,15 @@
             </div>
             <div class="col-lg-7 col-md-6 mt-5">
                 <div class="section-header text-left">
-                    <h1>15 Years Experience</h1>
+                    <h1 class="text-dark">15 Years Experience</h1>
                 </div>
                 <div class="about-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur
-                        facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum,
-                        viverra quis sem.
+                        Are you ready to stop battling your hair? Win the war against breakage.
+                        Forever. 
                     </p>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur
-                        facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum,
-                        viverra quis sem. Curabitur non nisl nec nisi scelerisque maximus.
-                        Aenean consectetur convallis porttitor. Aliquam interdum at lacus non blandit.
+                        The Science of Black Hair: A Comprehensive Guide to Textured Hair Care combines research with testimony in an authoritative reference text dedicated to the care of black hair-relaxed or natural.
                     </p>
                     <a class="btn" href="">Learn More</a>
                 </div>
@@ -83,8 +79,10 @@
 
 <div class="row justify-content-center mt-5 section-cover mx-0 px-0"
     style="background:linear-gradient(rgba(29, 36, 52, 1), rgba(29, 36, 52, .5), rgba(29, 36, 52, 1)), url(assets/images/big_image_2.jpg);background-size: cover; background-repeat: no-repeat;    ">
-    <div class="col-md-7 text-center d-flex justify-content-center align-items-center">
+    <div class="col-md-7 text-center d-flex justify-content-center align-items-center flex-column">
         <h2 class="mt-5 discount">Stay up to date with the latest hair trends</h2>
+        <h2 class="mt-5 discount">Make your shop Now</h2>
+        <a class="btn1" href="" routerLink="/account/register" target="_blank">JOIN US</a>
     </div>
 </div>
 
@@ -101,8 +99,8 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="media d-block media-feature text-center">
-                    <div class="mr-3 icon-wrap"><span class="custom-icon flaticon-scissors-1"></span></div>
-                    <div class="media-body">
+                    <div class="icon-wrap1"><img src="assets/images/123.png" style="width: 100%;"></div>
+                    <div class="media-body mt-4">
                         <h3 class="text-dark">Shave &amp; Haircut</h3>
                     </div>
                 </div>
@@ -110,16 +108,16 @@
             </div>
             <div class="col-md-4">
                 <div class="media d-block media-feature text-center">
-                    <div class="mr-3 icon-wrap"><span class="custom-icon flaticon-cream"></span></div>
-                    <div class="media-body">
+                    <div class="icon-wrap1"><img src="assets/images/1234.png" style="width: 100%;"></div>
+                     <div class="media-body mt-4">
                         <h3 class="text-dark">Cream &amp; Shampoo</h3>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="media d-block media-feature text-center">
-                    <div class="mr-3 icon-wrap"><span class="custom-icon flaticon-moustache"></span></div>
-                    <div class="media-body">
+                    <div class="icon-wrap1"><img src="assets/images/12345.png" style="width: 100%;"></div>
+                    <div class="media-body mt-4">
                         <h3 class="text-dark">Mustache Expert</h3>
                     </div>
                 </div>
@@ -130,8 +128,8 @@
             <div class="col-md-4">
 
                 <div class="media d-block media-feature text-center">
-                    <div class="mr-3 icon-wrap"><span class="custom-icon flaticon-scissors"></span></div>
-                    <div class="media-body">
+                    <div class="icon-wrap1"><img src="assets/images/123456.png" style="width: 100%;"></div>
+                    <div class="media-body mt-4">
                         <h3 class="text-dark">Haircut Styler</h3>
                     </div>
                 </div>
@@ -139,16 +137,16 @@
             </div>
             <div class="col-md-4">
                 <div class="media d-block media-feature text-center">
-                    <div class="mr-3 icon-wrap"><span class="custom-icon flaticon-razor"></span></div>
-                    <div class="media-body">
+                    <div class="icon-wrap1"><img src="assets/images/1234567.png" style="width: 100%;"></div>
+                    <div class="media-body mt-4">
                         <h3 class="text-dark">Razor For Beards</h3>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="media d-block media-feature text-center">
-                    <div class="mr-3 icon-wrap"><span class="custom-icon flaticon-hair-comb"></span></div>
-                    <div class="media-body">
+                    <div class="icon-wrap1"><img src="assets/images/122.png" style="width: 100%;"></div>
+                    <div class="media-body mt-4">
                         <h3 class="text-dark">Haircomb</h3>
                     </div>
                 </div>
@@ -165,7 +163,7 @@
         <h2 class=" my-5 discount ">Appoint a Haircut Today and</h2>
         <h2 class="discount ">Get 25% discount</h2>
 
-        <a class="btn1 mt-5" href="">Make an </a>
+        <a class="btn1 mt-5" href="" [routerLink]="'/my-shop'">Reservation Now</a>
     </div>
 </div>
 
@@ -230,8 +228,8 @@
 <div class="row justify-content-center mt-5 section-cover mx-0 px-0"
     style="background-image: url(assets/images/slider01.jpg);">
     <div class="col-md-7 text-center my-5 d-flex flex-column justify-content-center align-items-center">
-        <h2 class=" my-5 discount ">Book a Haircut and Shave</h2>
-        <a class="btn1 mt-5 text-black" href="">Book Now </a>
+        <h2 class=" my-5 discount ">Locate Your Store And Book a Haircut</h2>
+        <a class="btn1 mt-5 text-black" [routerLink]="'/my-shop'">Book Now </a>
     </div>
 </div>
 
