@@ -18,7 +18,7 @@ export class ProxyService extends BaseComponent {
     return this.HttpClient.post(this.url+"/Rsvp/book",input);
   }
   deleteService(service_id,shop_id) {
-    return this.HttpClient.get(this.url+`/services/delete/${service_id}/${shop_id}`);
+    return this.HttpClient.delete(this.url+`/services/delete/${service_id}/${shop_id}`);
   }
 
 
@@ -34,7 +34,12 @@ export class ProxyService extends BaseComponent {
   getMyReservation(user_name) {
     return this.HttpClient.get(this.url+"/Rsvp/getMyRsvp/"+user_name);
   }
-
+  getMyShop(user_name) {
+    return this.HttpClient.get(this.url+"/shop/getShopByUser/"+user_name);
+  }
+  updateMyShop(user_name) {
+    return this.HttpClient.put(this.url+"/shop/update",user_name);
+  }
   
   login(input) {
     return this.HttpClient.post(this.url+"/login",input, {observe: 'response'});

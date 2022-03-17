@@ -29,6 +29,7 @@ export class RegisterComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.removeItem('token')
     if (this.isShop) {
       this.registerForm = this._formBuilder.group({
         user_name: ['', [Validators.required]],

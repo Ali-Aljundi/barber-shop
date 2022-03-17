@@ -43,7 +43,7 @@ export class ShopsComponent extends BaseComponent implements OnInit {
     this.shopFilterForm = this.formBuilder.group({
       name: [null],
       city: [null],
-      rate: [5],
+      rate: [6],
     });
     this.servicesFilterForm = this.formBuilder.group({
       service_name: [null],
@@ -70,6 +70,9 @@ export class ShopsComponent extends BaseComponent implements OnInit {
     let input = {
       "shopFilterRequest": this.shopFilterForm.value,
       "servicesFilterRequest": this.servicesFilterForm.value
+    }
+    if (!input.shopFilterRequest.name) {
+      delete input.shopFilterRequest
     }
     this.proxyService.getAllShopByFilter(input).subscribe(el => {
       this.markerPositions = el[0]

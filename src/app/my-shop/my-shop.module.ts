@@ -6,6 +6,7 @@ import { MyShopComponent } from './my-shop.component';
 import { AppNgZorroAntdModule } from '../app-ng-zorro-antd.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddServiceComponent } from './add-service/add-service.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -17,8 +18,7 @@ import { AddServiceComponent } from './add-service/add-service.component';
     CommonModule,
     MyShopRoutingModule,
     AppNgZorroAntdModule,
-    FormsModule,
-    ReactiveFormsModule
+    SharedModule,
   ]
 })
 export class MyShopModule { }

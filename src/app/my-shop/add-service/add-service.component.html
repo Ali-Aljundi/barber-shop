@@ -5,7 +5,7 @@
                 <nz-form-item class="d-block mx-1 my-0">
                     <nz-form-label class="text-white">Service Name</nz-form-label>
                     <nz-form-control>
-                        <input type="text" nz-input placeholder="Service Name" [formControlName]="'serviceName'" />
+                        <input type="text" nz-input placeholder="Service Name" [formControlName]="'service_name'" />
                     </nz-form-control>
                 </nz-form-item>
             </div>
@@ -15,8 +15,22 @@
                 <nz-form-item class="d-block mx-1 my-0">
                     <nz-form-label class="text-white">Service Type</nz-form-label>
                     <nz-form-control>
-                        <nz-select nzAllowClear nzShowSearch nzPlaceHolder="Service Type" [formControlName]="'service_type'">
-                            <nz-option *ngFor="let type of serviceTypeList" [nzValue]="type.name" [nzLabel]="type.name"></nz-option>
+                        <nz-select nzAllowClear  class="w-100" formControlName="service_type" appEmptyToNull>
+                            <nz-option nzCustomContent  nzValue="wax" nzLabel="Wax">
+                                <nz-avatar class="mx-3" [nzSize]="'small'" nzIcon="user" nzSrc="assets/icon/wax.png"></nz-avatar>Wax
+                            </nz-option>
+                            <nz-option nzCustomContent  nzValue="packages" nzLabel="Packages">
+                                <nz-avatar class="mx-3" [nzSize]="'small'" nzIcon="user" nzSrc="assets/icon/packages.png"></nz-avatar>Packages
+                            </nz-option>
+                            <nz-option nzCustomContent  nzValue="color" nzLabel="Color">
+                                <nz-avatar class="mx-3" [nzSize]="'small'" nzIcon="user" nzSrc="assets/icon/color.png"></nz-avatar>Color
+                            </nz-option>
+                            <nz-option nzCustomContent  nzValue="face" nzLabel="Face">
+                                <nz-avatar class="mx-3" [nzSize]="'small'" nzIcon="user" nzSrc="assets/icon/face.png"></nz-avatar>Face
+                            </nz-option>
+                            <nz-option nzCustomContent  nzValue="hair" nzLabel="Hair">
+                                <nz-avatar class="mx-3" [nzSize]="'small'" nzIcon="user" nzSrc="assets/icon/hair.png"></nz-avatar>Hair
+                            </nz-option>
                         </nz-select>
                     </nz-form-control>
                 </nz-form-item>
@@ -37,20 +51,10 @@
 
             <div class="col-md-12 col-sm-12 py-2">
                 <nz-form-item class="d-block mx-1 my-0">
-                    <nz-form-label class="text-white">Duration</nz-form-label>
+                    <nz-form-label class="text-white">Duration in Minute</nz-form-label>
                     <nz-form-control>
-                        <nz-input-number class="ltr-input w-100" [formControlName]="'duration'" [nzMin]="0" [nzStep]="1"
+                        <nz-input-number class="ltr-input w-100" [formControlName]="'service_duration'" [nzMin]="0" [nzStep]="1"
                         nzPlaceHolder="Duration" appEmptyToNull> </nz-input-number>
-                    </nz-form-control>
-                </nz-form-item>
-            </div>
-
-            <div class="col-md-12 col-sm-12 py-2">
-                <nz-form-item class="d-block mx-1 my-0">
-                    <nz-form-label class="text-white">Description</nz-form-label>
-                    <nz-form-control>
-                        <textarea [formControlName]="'description'" [nzSize]="'small'" nz-input [rows]="3"
-                        placeholder="Description"></textarea>
                     </nz-form-control>
                 </nz-form-item>
             </div>

@@ -25,6 +25,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.removeItem('token')
   }
 
   submitform(form){
@@ -32,7 +33,11 @@ export class LoginComponent extends BaseComponent implements OnInit {
     this.proxyService.login(form).subscribe(res=>{
       this.AuthService.setToken(res.headers.get('Authorization'))
       this.AuthService.setUserName(form.username)
-      this.utility.route.navigate(['/']);
+      if (this.isOwner) {
+        this.utility.route.navigate(['/my-shop']);
+      } else {
+        this.utility.route.navigate(['/']);
+      }
       this.loading = false
     },err=>{
       this.utility.notification.error('Login','userName or Password error')
