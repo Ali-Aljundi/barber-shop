@@ -6,7 +6,7 @@ import { BaseComponent } from '../shared/components/base.component';
 })
 export class ProxyService extends BaseComponent {
   constructor(injector: Injector) { super(injector) }
-  url='http://barber-shop-hub.herokuapp.com';
+  url='https://barber-shop-hub.herokuapp.com';
 
   addService(input) {
     return this.HttpClient.post(this.url+"/services/add",input);
