@@ -31,7 +31,7 @@ export class HomePageComponent extends BaseComponent  implements OnInit {
     if (this.isUser) {
       this.utility.route.navigate(['/shops'])
     } else {
-      this.utility.route.navigate(['/login'])
+      this.utility.route.navigate(['/account/login'])
     }
   }
 }

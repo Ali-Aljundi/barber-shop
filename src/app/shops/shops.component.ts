@@ -71,11 +71,14 @@ export class ShopsComponent extends BaseComponent implements OnInit {
       "shopFilterRequest": this.shopFilterForm.value,
       "servicesFilterRequest": this.servicesFilterForm.value
     }
-    if (!input.shopFilterRequest.name) {
+    if (!input.shopFilterRequest.name && !input.shopFilterRequest.city) {
       delete input.shopFilterRequest
     }
+    if (!input.servicesFilterRequest.service_name && !input.servicesFilterRequest.cost) {
+      delete input.servicesFilterRequest
+    }
     this.proxyService.getAllShopByFilter(input).subscribe(el => {
-      this.markerPositions = el[0]
+      this.markerPositions = el
       this.initMap()
     })
   }
