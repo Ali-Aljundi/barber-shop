@@ -22,7 +22,7 @@ export class ShopsComponent extends BaseComponent implements OnInit {
   markerOptions: google.maps.MarkerOptions = { draggable: false, animation: google.maps.Animation.BOUNCE, icon: 'https://img.icons8.com/external-photo3ideastudio-flat-photo3ideastudio/32/000000/external-barber-public-service-photo3ideastudio-flat-photo3ideastudio.png' };
   markerPositions: any = [];
   center: google.maps.LatLngLiteral = { lat: 0, lng: 0 };
-  zoom = 14;
+  zoom = 7;
   selectedShop
   price = 0
   marks: NzMarks = {
@@ -77,8 +77,21 @@ export class ShopsComponent extends BaseComponent implements OnInit {
     if (!input.servicesFilterRequest.service_name && !input.servicesFilterRequest.cost) {
       delete input.servicesFilterRequest
     }
-    this.proxyService.getAllShopByFilter(input).subscribe(el => {
-      this.markerPositions = el
+    let uniqueIds = []
+    this.proxyService.getAllShopByFilter(input).subscribe((el:any) => {
+      this.markerPositions = el.flat().filter(element=>{
+        const isDuplicate = uniqueIds.includes(element.id);
+        if (!isDuplicate) {
+          uniqueIds.push(element.id);
+          return true;
+        }
+      })
+      this.markerPositions.forEach(element => {
+        element.shopServicesList = element.shopServicesList.filter(el=>{
+          return el.cost <= input.servicesFilterRequest.cost
+        })
+      });
+      this.markerPositions = this.markerPositions.filter(el=>el.shopServicesList.length>0)
       this.initMap()
     })
   }

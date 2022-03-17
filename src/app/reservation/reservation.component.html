@@ -6,9 +6,9 @@
           <nz-avatar class="mx-3" [nzSize]="'small'" nzIcon="user" [nzSrc]="serviceIcon(haveReservation(date)[0])">
           </nz-avatar>
           <span>{{haveReservation(date)[0].shopName}}</span>
-          <span class="px-2"><strong>{{haveReservation(date)[0].date | date:'hh:MM a'}}</strong></span>
-        </div>
+         </div>
         <span nz-typography nzType="secondary">{{haveReservation(date)[0].serviceName}}</span>
+        <span class="px-2"><strong>{{haveReservation(date)[0].date | date:'hh:MM a'}}</strong></span>
         <div class="row">
           <div class="col-4 p-1">
             <h5 class="mb-0" nz-typography nzType="success">{{haveReservation(date)[0].cost}}$</h5>
@@ -17,11 +17,11 @@
             <h5 class="mb-0" nz-typography nzType="warning">{{haveReservation(date)[0].duration}} min</h5>
           </div>
           <div class="col-2  p-1">
-            <i nz-popover [nzPopoverContent]="contentTemplate" nz-icon nzType="star" style="font-size: 20px;"
+            <i nz-popover *ngIf="!isOwner"  [nzPopoverContent]="contentTemplate" nz-icon nzType="star" style="font-size: 20px;"
               nzTheme="twotone" [nzTwotoneColor]="'#fadb14'"></i>
           </div>
           <div class="col-1  p-1 pl-2">
-            <i nz-popover [nzPopoverContent]="mapTemplate"  nz-icon nzType="environment"  style="font-size: 20px;"
+            <i nz-popover *ngIf="!isOwner"  [nzPopoverContent]="mapTemplate"  nz-icon nzType="environment"  style="font-size: 20px;"
               nzTheme="twotone" [nzTwotoneColor]="'#eb2f96'"></i>
           </div>
         </div>
@@ -34,8 +34,8 @@
       <nz-rate [(ngModel)]="haveReservation(date)[0].rate"></nz-rate>
     </ng-template>
     <ng-template #mapTemplate>
-      <google-map [center]="haveReservation(date)[0].location" [zoom]="16">
-        <map-marker #marker="mapMarker" [position]="haveReservation(date)[0].location"></map-marker>
+      <google-map   [center]="haveReservation(date)[0].location" [zoom]="16">
+        <map-marker  #marker="mapMarker" [position]="haveReservation(date)[0].location"></map-marker>
       </google-map>
     </ng-template>
   </ul>

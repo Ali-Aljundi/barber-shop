@@ -16,9 +16,16 @@ export class ReservationComponent  extends BaseComponent implements OnInit {
   }
   reservationList = []
   ngOnInit(): void {
-    this.proxyService.getMyReservation(this.getUserName).subscribe((el:any)=>{
-      this.reservationList = el
-    })
+    if(this.isUser){
+      this.proxyService.getMyReservation(this.getUserName).subscribe((el:any)=>{
+        this.reservationList = el
+      })
+    }
+    if(this.isOwner){
+      this.proxyService.getShopReservation(this.getUserName).subscribe((el:any)=>{
+        this.reservationList = el
+      })
+    }
   }
   showReservation=false
   selectedReservationByDate=[]

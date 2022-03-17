@@ -34,6 +34,9 @@ export class ProxyService extends BaseComponent {
   getMyReservation(user_name) {
     return this.HttpClient.get(this.url+"/Rsvp/getMyRsvp/"+user_name);
   }
+  getShopReservation(user_name) {
+    return this.HttpClient.get(this.url+"/Rsvp/getShopRsvp/"+user_name);
+  }
   getMyShop(user_name) {
     return this.HttpClient.get(this.url+"/shop/getShopByUser/"+user_name);
   }
