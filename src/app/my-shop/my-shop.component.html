@@ -1,7 +1,6 @@
 <div class="row mx-0" style="background: black;">
     <div class="col-md-4">
-        <google-map height="100%" width="100%" [center]='{ "lat": myShop.lat?myShop.lat:deflat,"lng":myShop.lng?myShop.lng:deflag}' [zoom]="myShop.lat?16:10"
-            (mapClick)="updateLocation($event)">
+        <google-map height="100%" width="100%" [center]='{ "lat": myShop.lat?myShop.lat:deflat,"lng":myShop.lng?myShop.lng:deflag}' [zoom]="myShop.lat?16:10" (mapClick)="updateLocation($event)">
             <map-marker #marker="mapMarker" [position]='{ "lat": myShop.lat,"lng": myShop.lng}'></map-marker>
         </google-map>
     </div>
@@ -19,8 +18,7 @@
                 <nz-form-item class="d-block mx-1">
                     <nz-form-label class="h3">City</nz-form-label>
                     <nz-form-control nzValidatingTip="Validating... ">
-                        <nz-select nzAllowClear class="w-100" [nzSize]="'large'" nzPlaceHolder="Select City"
-                            [(ngModel)]='myShop.city'>
+                        <nz-select nzAllowClear class="w-100" [nzSize]="'large'" nzPlaceHolder="Select City" [(ngModel)]='myShop.city'>
                             <nz-option nzValue="Manchester" nzLabel="Manchester"></nz-option>
                             <nz-option nzValue="Newcastle" nzLabel="Newcastle"></nz-option>
                             <nz-option nzValue="London" nzLabel="London"></nz-option>
@@ -31,40 +29,40 @@
                     </nz-form-control>
                 </nz-form-item>
             </div>
-            <div class="col-md-2">
-                <button nz-button [nzLoading]='loading' [nzSize]="'large'" (click)='update()' nzType="primary">Update
+            <div class="col-md-2 align-items-center d-flex mt-4">
+                <button nz-button [nzLoading]='loading' [nzSize]="'large'" (click)='update()' nzType="default">Update
                     Shop Info</button>
             </div>
         </div>
 
-        <div class="row d-flex justify-content-between align-items-end">
-            <h3 class="text-white mt-5 col">Services:</h3>
-            <span class="col text-right mx-1">
-                <button nz-button nzType="primary" (click)="showSerModal()">Add Service</button>
+        <div class=" row d-flex justify-content-between align-items-end ">
+            <h3 class="text-white mt-5 col ">Services:</h3>
+            <span class="col text-right mx-3 ">
+                <button nz-button nzType="default " (click)="showSerModal() ">Add Service</button>
             </span>
         </div>
 
-        <div class="row d-flex justify-content-start align-items-center mb-5 mt-3" style="min-height: 35vh;">
-            <div *ngFor="let service of myShop.shopServicesList" class="col-lg-4 col-md-4 col-sm-6 p-3">
-                <nz-card  class="action-card" [nzBodyStyle]="{padding: '24px 12px'}" nzHoverable [nzActions]="[dmActions, dmStatus]">
+        <div class="row d-flex justify-content-start align-items-center mb-5 mt-3 " style="min-height: 35vh; ">
+            <div *ngFor="let service of myShop.shopServicesList " class="col-lg-4 col-md-4 col-sm-6 p-3 ">
+                <nz-card class="action-card " [nzBodyStyle]="{padding: '24px 12px'} " nzHoverable [nzActions]="[dmActions, dmStatus] ">
                     <div>
-                        <nz-avatar class="mx-3" [nzSize]="'default'" nzIcon="user" [nzSrc]="serviceIcon(service)">
+                        <nz-avatar class="mx-3 " [nzSize]=" 'default' " nzIcon="user " [nzSrc]="serviceIcon(service) ">
                         </nz-avatar>
                         <h5>{{service.serviceName}}</h5>
-                        <span nz-typography nzType="secondary">{{service.description}}</span>
+                        <span nz-typography nzType="secondary ">{{service.description}}</span>
                     </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <h5 class="mb-0" nz-typography nzType="success">{{service.cost}}$</h5>
+                    <div class="row ">
+                        <div class="col-6 ">
+                            <h5 class="mb-0 " nz-typography nzType="success ">{{service.cost}}$</h5>
                         </div>
-                        <div class="col-6">
-                            <h5 class="mb-0" nz-typography nzType="warning">{{service.duration}} min</h5>
+                        <div class="col-6 ">
+                            <h5 class="mb-0 " nz-typography nzType="warning ">{{service.duration}} min</h5>
                         </div>
                     </div>
                 </nz-card>
 
-                <!-- <nz-card  class="action-card" [nzBodyStyle]="{padding: '24px 12px'}" nzHoverable [nzActions]="[dmActions, dmStatus]">
-                    <nz-card-meta [nzTitle]="ser.serviceName" [nzDescription]="descriptionTemplate"></nz-card-meta>
+                <!-- <nz-card  class="action-card " [nzBodyStyle]="{padding: '24px 12px'} " nzHoverable [nzActions]="[dmActions, dmStatus] ">
+                    <nz-card-meta [nzTitle]="ser.serviceName " [nzDescription]="descriptionTemplate "></nz-card-meta>
                 </nz-card>
 
                 <ng-template #descriptionTemplate>
@@ -72,26 +70,20 @@
                 </ng-template> -->
 
                 <ng-template #dmActions>
-                    <a nz-button nzType="link" nzBlock style="color:#52c41a;" (click)="showSerModal(service)"
-                        class="d-flex justify-content-center align-items-center">
-                        <i class="d-inline" nz-icon nzType="edit" [nzTheme]="'twotone'"
-                            [nzTwotoneColor]="'#52c41a'"></i>
-                        Edit
+                    <a nz-button nzType="link " nzBlock style="color:#52c41a; " (click)="showSerModal(service) " class="d-flex justify-content-center align-items-center ">
+                        <i class="d-inline " nz-icon nzType="edit " [nzTheme]=" 'twotone' " [nzTwotoneColor]=" '#52c41a' "></i> Edit
                     </a>
                 </ng-template>
 
 
                 <ng-template #dmStatus>
-                    <a nz-button nzType="link" nzBlock style="color:#f56036" (click)="showDeleteConfirm(service.id)"
-                        class="d-flex justify-content-center align-items-center">
-                        <i class="d-inline" nz-icon nzType="delete" [nzTheme]="'twotone'"
-                            [nzTwotoneColor]="'#f56036'"></i>
-                        Delete
+                    <a nz-button nzType="link " nzBlock style="color:#f56036 " (click)="showDeleteConfirm(service.id) " class="d-flex justify-content-center align-items-center ">
+                        <i class="d-inline " nz-icon nzType="delete " [nzTheme]=" 'twotone' " [nzTwotoneColor]=" '#f56036' "></i> Delete
                     </a>
                 </ng-template>
             </div>
-            <div *ngIf="myShop?.shopServicesList?.length==0" class="w-100">
-                <h3 class="text-center">You Dont Have Any Service Yet</h3>
+            <div *ngIf="myShop?.shopServicesList?.length==0 " class="w-100 ">
+                <h3 class="text-center ">You Dont Have Any Service Yet</h3>
             </div>
         </div>
     </div>
